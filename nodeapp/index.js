@@ -26,9 +26,10 @@ mongoose
       console.log("API is running in PORT:8080");
     });
   })
-  .catch((error) => {
-    console.log(error);
-  });
+  // .catch((error) => {
+  //   console.log(error);
+  // });
+  .catch(err => console.error('Database connection error:', err));
   app.use("/user", userRouter);
   app.use("/book", bookingRouter);
 
