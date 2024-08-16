@@ -1,0 +1,65 @@
+<!-- view-booking.component.html -->
+
+<div class="search-sort-container">
+    <input type="text" [(ngModel)]="searchValue" (input)="getAllBookings()" placeholder="Search your name here..." />
+    <select [(ngModel)]="sort" (change)="getAllBookings()">
+      <option value="">Sort by Date</option>
+      <option value="1">Ascending</option>
+      <option value="-1">Descending</option>
+    </select>
+  </div>
+
+<div style="background-color: rgb(221, 221, 172);">
+    <h2 style="text-align: center;">View Bookings</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>User Name</th>
+          <th>Package Name</th>
+          <th>Location</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings">
+          <td>{{ booking.userName }}</td>
+          <td>{{ booking.packageName }}</td>
+          <td>{{ booking.location }}</td>
+          <td>{{ booking.description }}</td>
+          <td>{{ booking.date }}</td>
+          <td>
+            <button (click)="openEditForm(booking)">Edit</button>
+            <button (click)="deleteBooking(booking._id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Edit Form -->
+    <div *ngIf="showEditForm">
+      <h3>Edit Booking</h3>
+      <!-- Your form fields go here -->
+      <label>User Name:</label>
+      <input [(ngModel)]="updatedBooking.userName" name="userName" />
+
+      <label>Package Name:</label>
+      <input [(ngModel)]="updatedBooking.packageName" name="packageName" />
+
+      <label>Location:</label>
+      <input [(ngModel)]="updatedBooking.location" name="location" />
+
+      <label>Description:</label>
+      <textarea [(ngModel)]="updatedBooking.description" name="description"></textarea>
+
+      <label>Date:</label>
+      <input type="date" [(ngModel)]="updatedBooking.date" name="date" />
+  
+      
+  
+      <button (click)="editBooking()">Save Changes</button>
+    </div>
+  </div>
+  

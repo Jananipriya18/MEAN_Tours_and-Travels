@@ -1,0 +1,58 @@
+/* view-booking.component.css */
+
+div {
+    margin: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead th, tbody td {
+    border: 1px solid black; /* Updated border color to black */
+    padding: 8px;
+    text-align: left;
+}
+
+tbody td {
+    text-align: left;
+}
+
+button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Edit Form Styles */
+div * {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, textarea, button {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+/* Add more styles as needed */

@@ -1,0 +1,37 @@
+<!-- add-booking.component.html -->
+
+<div style="background-color:rgb(221, 221, 172) ;">
+    <h2 style="text-align: center;">Add Booking</h2>
+  
+    <form (ngSubmit)="addBooking()" #bookingForm="ngForm">
+  
+      <div>
+        <label for="userName">User Name</label>
+        <input type="text" id="userName" name="userName" [(ngModel)]="booking.userName" required>
+      </div>
+  
+      <div>
+        <label for="packageName">Package Name</label>
+        <input type="text" id="packageName" name="packageName" [(ngModel)]="booking.packageName" required>
+      </div>
+  
+      <div>
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" [(ngModel)]="booking.location" required>
+      </div>
+  
+      <div>
+        <label for="description">Description</label>
+        <textarea id="description" name="description" [(ngModel)]="booking.description" required></textarea>
+      </div>
+  
+      <div>
+        <label for="date">Date</label>
+        <input type="text" id="date" name="date" [(ngModel)]="booking.date" required>
+      </div>
+  
+      <button type="submit" [disabled]="bookingForm.invalid">Add</button>
+  
+    </form>
+  </div>
+  

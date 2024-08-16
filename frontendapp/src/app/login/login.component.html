@@ -1,0 +1,17 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form (ngSubmit)="onSubmit()" novalidate>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="email" name="email" required>
+    <!-- You can add more validation messages if needed -->
+    <div *ngIf="!email && email !== undefined">Email is required.</div>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="password" name="password" required>
+    <!-- You can add more validation messages if needed -->
+    <div *ngIf="!password && password !== undefined">Password is required.</div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>

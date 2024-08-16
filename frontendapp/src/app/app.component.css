@@ -1,0 +1,23 @@
+.title{
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    background-color: yellowgreen;
+    padding: 10px;
+}
+.search {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    
+}
+.search input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    border-color: black; /* Remove default input focus outline */
+  }
+  

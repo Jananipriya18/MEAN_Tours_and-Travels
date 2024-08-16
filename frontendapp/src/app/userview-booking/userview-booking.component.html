@@ -1,0 +1,39 @@
+<h1 style="text-align: center;">User view</h1>
+<button class="btn btn-primary" (click)="logout()">Logout</button>
+<div class="search-sort-container">
+    <input type="text" [(ngModel)]="searchValue" (input)="getAllBookings()" placeholder="Search your name here..." />
+    <select [(ngModel)]="sort" (change)="getAllBookings()">
+      <option value="">Sort by Date</option>
+      <option value="1">Ascending</option>
+      <option value="-1">Descending</option>
+    </select>
+  </div>
+<div style="background-color: rgb(221, 221, 172);">
+    <h2 style="text-align: center;">View Packages</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>User Name</th>
+          <th>Package Name</th>
+          <th>Location</th>
+          <th>Description</th>
+          <th>Date</th>
+          <!-- <th>Action</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings">
+          <td>{{ booking.userName }}</td>
+          <td>{{ booking.packageName }}</td>
+          <td>{{ booking.location }}</td>
+          <td>{{ booking.description }}</td>
+          <td>{{ booking.date }}</td>
+          <!-- <td>
+            <button (click)="openEditForm(booking)">Edit</button>
+            <button (click)="deleteBooking(booking._id)">Delete</button>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+</div>

@@ -1,0 +1,122 @@
+<!-- <div class="registration-container">
+  <h2>Register</h2>
+  <form (ngSubmit)="register()" #registrationForm="ngForm" novalidate>
+
+ 
+    <label for="first_name">First Name:</label>
+    <input type="text" id="first_name" name="first_name" [(ngModel)]="user.first_name" required>
+    <div *ngIf="registrationForm.controls['first_name'].invalid && (registrationForm.controls['first_name'].dirty || registrationForm.controls['first_name'].touched)">
+      <div *ngIf="registrationForm.controls['first_name'].errors?.required">First Name is required.</div>
+    </div>
+
+ 
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name" [(ngModel)]="user.last_name" required>
+    <div *ngIf="registrationForm.controls['last_name'].invalid && (registrationForm.controls['last_name'].dirty || registrationForm.controls['last_name'].touched)">
+      <div *ngIf="registrationForm.controls['last_name'].errors?.required">Last Name is required.</div>
+    </div>
+
+   
+    <label for="mobile_number">Mobile Number:</label>
+    <input type="tel" id="mobile_number" name="mobile_number" [(ngModel)]="user.mobile_number" required pattern="[0-9]{10}">
+    <div *ngIf="registrationForm.controls['mobile_number'].invalid && (registrationForm.controls['mobile_number'].dirty || registrationForm.controls['mobile_number'].touched)">
+      <div *ngIf="registrationForm.controls['mobile_number'].errors?.required">Mobile Number is required.</div>
+      <div *ngIf="registrationForm.controls['mobile_number'].errors?.pattern">Invalid mobile number format (Number should be 10 digits).</div>
+    </div>
+
+   
+    <label for="mail_id">Mail ID:</label>
+    <input type="email" id="mail_id" name="mail_id" [(ngModel)]="user.mail_id" required email>
+    <div *ngIf="registrationForm.controls['mail_id'].invalid && (registrationForm.controls['mail_id'].dirty || registrationForm.controls['mail_id'].touched)">
+      <div *ngIf="registrationForm.controls['mail_id'].errors?.required">Mail ID is required.</div>
+      <div *ngIf="registrationForm.controls['mail_id'].errors?.email">Invalid email format.</div>
+    </div>
+
+  
+    <label for="role">Role:</label>
+    <select id="role" name="role" [(ngModel)]="user.role" required>
+      <option value="admin">Admin</option>
+      <option value="user">User</option>
+    </select>
+    <div *ngIf="registrationForm.controls['role'].invalid && (registrationForm.controls['role'].dirty || registrationForm.controls['role'].touched)">
+      <div *ngIf="registrationForm.controls['role'].errors?.required">Role is required.</div>
+    </div>
+
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="user.password" required minlength="6">
+    <div *ngIf="registrationForm.controls['password'].invalid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)">
+      <div *ngIf="registrationForm.controls['password'].errors?.required">Password is required.</div>
+      <div *ngIf="registrationForm.controls['password'].errors?.minlength">Password must be at least 6 characters.</div>
+    </div>
+
+    <label for="confirm_password">Confirm Password:</label>
+    <input type="password" id="confirm_password" name="confirm_password" [(ngModel)]="user.confirm_password" required minlength="6">
+    <div *ngIf="registrationForm.controls['confirm_password'].invalid && (registrationForm.controls['confirm_password'].dirty || registrationForm.controls['confirm_password'].touched)">
+      <div *ngIf="registrationForm.controls['confirm_password'].errors?.required">Confirm Password is required.</div>
+      <div *ngIf="registrationForm.controls['confirm_password'].errors?.minlength">Confirm Password must be at least 6 characters.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+  </form>
+</div> -->
+
+
+
+<div class="registration-container">
+  <h2>Register</h2>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <label for="role">Role:</label>
+    <select formControlName="role">
+      <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+    </select>
+    <div *ngIf="registrationForm.get('role').invalid && registrationForm.get('role').touched">
+      <div *ngIf="registrationForm.get('role').errors?.required">Role is required.</div>
+    </div>
+
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" formControlName="firstName">
+    <div *ngIf="registrationForm.get('firstName').invalid && registrationForm.get('firstName').touched">
+      <div *ngIf="registrationForm.get('firstName').errors?.required">First Name is required.</div>
+    </div>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" formControlName="lastName">
+    <div *ngIf="registrationForm.get('lastName').invalid && registrationForm.get('lastName').touched">
+      <div *ngIf="registrationForm.get('lastName').errors?.required">Last Name is required.</div>
+    </div>
+
+    <label for="mobileNumber">Mobile Number:</label>
+    <input type="tel" id="mobileNumber" formControlName="mobileNumber" pattern="[0-9]{10}">
+    <div *ngIf="registrationForm.get('mobileNumber').invalid && registrationForm.get('mobileNumber').touched">
+      <div *ngIf="registrationForm.get('mobileNumber').errors?.required">Mobile Number is required.</div>
+      <div *ngIf="registrationForm.get('mobileNumber').errors?.pattern">Invalid mobile number format (Number should be 10 digits).</div>
+    </div>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email">
+    <div *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched">
+      <div *ngIf="registrationForm.get('email').errors?.required">Email is required.</div>
+      <div *ngIf="registrationForm.get('email').errors?.email">Invalid email format.</div>
+    </div>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password">
+    <div *ngIf="registrationForm.get('password').invalid && registrationForm.get('password').touched">
+      <div *ngIf="registrationForm.get('password').errors?.required">Password is required.</div>
+      <div *ngIf="registrationForm.get('password').errors?.minlength">Password must be at least 6 characters.</div>
+    </div>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" formControlName="confirmPassword">
+    <div *ngIf="registrationForm.get('confirmPassword').invalid && registrationForm.get('confirmPassword').touched">
+      <div *ngIf="registrationForm.get('confirmPassword').errors?.required">Confirm Password is required.</div>
+      <div *ngIf="registrationForm.hasError('passwordMismatch') && registrationForm.get('confirmPassword').touched">
+        Passwords do not match.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+  </form>
+</div>
