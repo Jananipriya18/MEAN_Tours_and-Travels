@@ -1,49 +1,52 @@
 const Booking = require('../models/bookingModel');
+const mongoose = require('mongoose');
 
-const bookTourPackage = async (req, res) => {
-    try {
-        const booking = await Booking.create(req.body);
-        res.status(201).send(booking);
-    } catch (error) {
-        res.status(500).send({ message: error.message });
-    }
+exports.getAllBookings = async (req, res) => {
+  try {
+    const { sortValue = 1, searchValue = '' } = req.body;
+    const bookings = await Booking.find({ userName: new RegExp(searchValue, 'i') })
+      .sort({ date: sortValue });
+    res.status(200).json({ bookings });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-const getAllBookings = async (req, res) => {
-    try {
-        const { searchValue, sortValue } = req.query;
-        const bookings = await Booking.find({
-            userName: { $regex: searchValue, $options: 'i' }
-        }).sort({ date: sortValue });
-        res.status(200).send(bookings);
-    } catch (error) {
-        res.status(500).send({ message: error.message });
-    }
+exports.bookTourPackage = async (req, res) => {
+  try {
+    const booking = await Booking.create(req.body);
+    res.status(200).json({ message: 'Tour package booked successfully', booking });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-const updateTourPackage = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const booking = await Booking.findByIdAndUpdate(id, req.body, { new: true });
-        res.status(200).send(booking);
-    } catch (error) {
-        res.status(500).send({ message: error.message });
+exports.updateTourPackage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedBooking = await Booking.findByIdAndUpdate(id, req.body, { new: true });
+
+    if (!updatedBooking) {
+      return res.status(404).json({ message: 'Booking not found' });
     }
+
+    res.status(200).json({ message: 'Booking updated successfully', booking: updatedBooking });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-const cancelTourPackage = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const booking = await Booking.findByIdAndDelete(id);
+exports.cancelTourPackage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedBooking = await Booking.findByIdAndDelete(id);
 
-        if (!booking) {
-            return res.status(404).send({ message: 'Booking not found' });
-        }
-
-        res.status(200).send({ message: 'Booking cancelled successfully' });
-    } catch (error) {
-        res.status(500).send({ message: error.message });
+    if (!deletedBooking) {
+      return res.status(404).json({ message: 'Booking not found' });
     }
-};
 
-module.exports = { bookTourPackage, getAllBookings, updateTourPackage, cancelTourPackage };
+    res.status(200).json({ message: 'Booking canceled successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
