@@ -15,7 +15,7 @@ exports.getAllBookings = async (req, res) => {
 exports.bookTourPackage = async (req, res) => {
   try {
     const booking = await Booking.create(req.body);
-    res.status(200).json({ message: 'Tour package booked successfully', booking });
+    res.status(200).json({ message: 'Tour package booked successfully' }); // Adjusted response
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -30,7 +30,7 @@ exports.updateTourPackage = async (req, res) => {
       return res.status(404).json({ message: 'Booking not found' });
     }
 
-    res.status(200).json({ message: 'Booking updated successfully', booking: updatedBooking });
+    res.status(200).json({ message: 'Booking updated successfully' }); // Adjusted response
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -5,7 +5,7 @@ const { validateToken } = require('../authUtils');
 const router = express.Router();
 
 router.post('/book', validateToken, bookTourPackage);
-router.get('/all', validateToken, getAllBookings);
+router.post('/all', validateToken, getAllBookings);
 router.put('/update/:id', validateToken, updateTourPackage);
 router.delete('/cancel/:id', validateToken, cancelTourPackage);
 
