@@ -558,10 +558,10 @@ describe('cancelTourPackage_Controller', () => {
 });
 
 describe('validateToken', () => {
-  test('should_respond_with_400_status_and_error_message_if_invalid_token_is_provided', () => {
+  test('should_respond_with_401_status_and_error_message_if_invalid_token_is_provided', () => {
     // Mock the req, res, and next objects
     const req = {
-      header: jest.fn().mockReturnValue('invalidToken'),
+      header: jest.fn().mockReturnValue('Bearer invalidToken'), // Updated to mimic a real Bearer token structure
     };
     const res = {
       status: jest.fn().mockReturnThis(),
@@ -575,14 +575,14 @@ describe('validateToken', () => {
     // Assertions
     expect(req.header).toHaveBeenCalledWith('Authorization');
     expect(next).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({ message: 'Authentication failed' });
   });
  
-  test('should_respond_with_400_status_and_error_message_if_no_token_is_provided', () => {
+  test('should_respond_with_401_status_and_error_message_if_no_token_is_provided', () => {
     // Mock the req, res, and next objects
     const req = {
-      header: jest.fn().mockReturnValue(null),
+      header: jest.fn().mockReturnValue(null), // Simulates no Authorization header
     };
     const res = {
       status: jest.fn().mockReturnThis(),
@@ -596,17 +596,7 @@ describe('validateToken', () => {
     // Assertions
     expect(req.header).toHaveBeenCalledWith('Authorization');
     expect(next).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ message: 'Authentication failed' });
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith({ message: 'No token provided' });
   });
 });
- 
-
-
-
-
-
-
-
-
-
