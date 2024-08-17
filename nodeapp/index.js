@@ -31,5 +31,5 @@ mongoose
   // });
   .catch(err => console.error('Database connection error:', err));
   app.use("/user", userRouter);
-  app.use("/book", bookingRouter);
+  app.use("/booking", bookingRouter);
 
