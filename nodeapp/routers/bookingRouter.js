@@ -1,6 +1,6 @@
 const express = require('express');
 const { bookTourPackage, getAllBookings, updateTourPackage, cancelTourPackage } = require('../controllers/bookingController');
-const { validateToken } = require('../utils/authUtils');
+const { validateToken } = require('../authUtils');
 
 const router = express.Router();
 

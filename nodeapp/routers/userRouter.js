@@ -1,6 +1,6 @@
 const express = require('express');
 const { addUser, getUserByUsernameAndPassword, getAllUsers } = require('../controllers/userController');
-const { validateToken } = require('../utils/authUtils');
+const { validateToken } = require('../authUtils');
 
 const router = express.Router();
 
