@@ -12,7 +12,8 @@ const validateToken = (req, res, next) => {
     const authHeader = req.header('Authorization');
     
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(400).json({ message: "No token provided" }); // Change to 400
+      // No token provided or incorrect header format
+      return res.status(400).json({ message: "Authentication failed" });
     }
 
     const token = authHeader.split(' ')[1]; // Extract the token part
@@ -25,7 +26,8 @@ const validateToken = (req, res, next) => {
 
   } catch (error) {
     console.log("error", error);
-    res.status(400).json({ message: "Authentication failed" }); // Change to 400
+    // Token is invalid
+    res.status(400).json({ message: "Authentication failed" });
   }
 };
 
