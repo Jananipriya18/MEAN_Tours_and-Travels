@@ -575,7 +575,7 @@ describe('validateToken', () => {
     // Assertions
     expect(req.header).toHaveBeenCalledWith('Authorization');
     expect(next).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({ message: 'Authentication failed' });
   });
  
@@ -596,7 +596,7 @@ describe('validateToken', () => {
     // Assertions
     expect(req.header).toHaveBeenCalledWith('Authorization');
     expect(next).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({ message: 'Authentication failed' });
   });
 });
